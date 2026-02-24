@@ -26,6 +26,7 @@ header {
   padding-bottom: 1.2rem;
   border-bottom: 1px solid #e0ddd8;
   margin-bottom: 2rem;
+  width: 40vw;
 }
 
 .number_date_container {
@@ -37,7 +38,7 @@ header {
 
 .date {
   font-family: 'DM Serif Display', serif;
-  font-size: 3.8rem;
+  font-size: 5rem;
   font-weight: 400;
   color: #dddddd;
   line-height: 1;
@@ -52,7 +53,7 @@ header {
 
 .text_date p {
   font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
+  font-size: 1.1rem;
   font-weight: 300;
   letter-spacing: 0.12em;
   color: #c4c2c2;
@@ -62,7 +63,7 @@ header {
 
 .day-name {
   font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
+  font-size: 1.2rem;
   font-weight: 300;
   letter-spacing: 0.2em;
   color: #c4c2c2;

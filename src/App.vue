@@ -56,14 +56,14 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 3rem 1rem;
+  /* padding: 3rem 1rem; */
 }
 </style>
 
 <style scoped>
 .app-wrapper {
   width: 100%;
-  max-width: 480px;
+  /* max-width: 480px; */
 }
 
 .input-row {
@@ -118,13 +118,13 @@ li {
   align-items: center;
   gap: 0.8rem;
   padding: 0.75rem 0;
-  border-bottom: 1px solid #e0ddd8;
+  border-bottom: 1px solid #e0ddd827;
   cursor: pointer;
   transition: opacity 0.2s;
 }
 
 li:hover {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 
 .todo-check {
