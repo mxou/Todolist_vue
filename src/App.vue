@@ -7,7 +7,10 @@ const todo = ref('')
 
 function addTodo() {
   if (!todo.value) return
-  todosStore.value.push(todo.value)
+  todosStore.value.push({
+    text: todo.value,
+    done: false,
+  })
   todo.value = ''
 }
 
@@ -22,11 +25,20 @@ function deleteTodo(index) {
     <input v-model="todo" type="text" placeholder="Ajouter une tâche.." />
     <button @click="addTodo()">Ajouter</button>
     <ul>
-      <li v-for="(todo, index) in todosStore" :key="index">
-        {{ todo }} <button @click="deleteTodo(index)">Sup</button>
+      <li
+        v-for="(todo, index) in todosStore"
+        :key="index"
+        @click="todo.done = !todo.done"
+        :class="{ done_through: todo.done }"
+      >
+        {{ todo.text }} <button @click.stop="deleteTodo(index)">Sup</button>
       </li>
     </ul>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.done_through {
+  text-decoration: line-through;
+}
+</style>
