@@ -42,9 +42,9 @@ function deleteTodo(index) {
         <button @click="addTodo()">+</button>
       </div>
       <div class="filter-buttons-container">
-        <button @click="filter = 'all'">Tout</button>
-        <button @click="filter = 'inProgress'">En cours</button>
-        <button @click="filter = 'finished'">Terminées</button>
+        <button class="filter-btn" @click="filter = 'all'">Tout</button>
+        <button class="filter-btn" @click="filter = 'inProgress'">En cours</button>
+        <button class="filter-btn" @click="filter = 'finished'">Terminées</button>
       </div>
       <ul>
         <li
@@ -59,11 +59,11 @@ function deleteTodo(index) {
         </li>
       </ul>
     </div>
-    <div class="progress_container">
+    <!-- <div class="progress_container">
       <div class="progress_outside">
         <div class="progress_inside"></div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -105,6 +105,12 @@ body {
   flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 8px;
+}
+
+.filter-btn {
+  border: 1px solid #bbb8b2;
+  border-radius: 8px;
+  padding: 3px 8px;
 }
 
 input {
