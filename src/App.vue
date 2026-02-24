@@ -1,9 +1,26 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import HeaderDate from './components/HeaderDate.vue'
 
 const todosStore = ref([])
 const todo = ref('')
+const filter = ref('all')
+
+const filteredTodosStore = computed(() => {
+  if (filter.value === 'all') {
+    return todosStore.value
+  }
+
+  if (filter.value === 'inProgress') {
+    return todosStore.value.filter((todo) => !todo.done)
+  }
+
+  if (filter.value === 'finished') {
+    return todosStore.value.filter((todo) => todo.done)
+  }
+
+  return todosStore.value
+})
 
 function addTodo() {
   if (!todo.value) return
@@ -24,9 +41,14 @@ function deleteTodo(index) {
         <input v-model="todo" type="text" placeholder="Nouvelle tâche…" @keyup.enter="addTodo" />
         <button @click="addTodo()">+</button>
       </div>
+      <div class="filter-buttons-container">
+        <button @click="filter = 'all'">Tout</button>
+        <button @click="filter = 'inProgress'">En cours</button>
+        <button @click="filter = 'finished'">Terminées</button>
+      </div>
       <ul>
         <li
-          v-for="(todo, index) in todosStore"
+          v-for="(todo, index) in filteredTodosStore"
           :key="index"
           @click="todo.done = !todo.done"
           :class="{ done_through: todo.done }"
@@ -36,6 +58,11 @@ function deleteTodo(index) {
           <button class="delete-btn" @click.stop="deleteTodo(index)">suppr</button>
         </li>
       </ul>
+    </div>
+    <div class="progress_container">
+      <div class="progress_outside">
+        <div class="progress_inside"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -71,6 +98,13 @@ body {
   gap: 0;
   margin-bottom: 2rem;
   border-bottom: 1px solid #bbb8b2;
+}
+
+.filter-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 8px;
 }
 
 input {
@@ -171,5 +205,31 @@ li:hover .delete-btn {
 
 .done_through .todo-check {
   color: #ffffff;
+}
+
+.progress_container {
+  border: 2px solid red;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress_outside {
+  border: 1px solid #ccc9c2;
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: start;
+}
+
+.progress_inside {
+  border: 1px solid green;
+  width: 40%;
+  height: 20px;
+  border-radius: 10px;
+  background-color: green;
 }
 </style>
