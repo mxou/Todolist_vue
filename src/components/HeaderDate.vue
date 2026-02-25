@@ -1,14 +1,21 @@
 <script setup>
-defineProps({})
+// defineProps({})
+const current = new Date()
+const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`
+
+const day = current.getDate()
+const month = current.getMonth() + 1
+const year = current.getFullYear()
+console.log(date)
 </script>
 
 <template>
   <header>
     <div class="number_date_container">
-      <h1 class="date">12</h1>
+      <h1 class="date">{{ day }}</h1>
       <div class="text_date">
-        <p>JAN</p>
-        <p>2026</p>
+        <p>{{ month }}</p>
+        <p>{{ year }}</p>
       </div>
     </div>
     <p class="day-name">MARDI</p>
