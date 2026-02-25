@@ -83,34 +83,61 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  /* padding: 3rem 1rem; */
+  padding: 2.5rem 1.25rem;
+}
+
+#app {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 </style>
 
 <style scoped>
 .app-wrapper {
   width: 100%;
-  /* max-width: 480px; */
+  max-width: 560px;
 }
 
 .input-row {
   display: flex;
   gap: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   border-bottom: 1px solid #bbb8b2;
 }
 
 .filter-buttons-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  margin-bottom: 8px;
+  gap: 8px;
+  margin-bottom: 1.2rem;
 }
 
 .filter-btn {
-  border: 1px solid #bbb8b2;
-  border-radius: 8px;
-  padding: 3px 8px;
+  flex: 1;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  padding: 6px 4px;
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(0.6rem, 2.5vw, 0.75rem);
+  letter-spacing: 0.05em;
+  color: #aaa9a2;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+}
+
+.filter-btn:hover {
+  border-color: #bbb8b2;
+  color: #e4e4e4;
+  opacity: 1;
+}
+
+.filter-btn.active {
+  border-color: #bbb8b2;
+  color: #e4e4e4;
 }
 
 input {
@@ -119,7 +146,7 @@ input {
   border: none;
   outline: none;
   font-family: 'DM Mono', monospace;
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 3vw, 0.85rem);
   font-weight: 300;
   color: #bbb8b2;
   padding: 0.6rem 0;
@@ -127,7 +154,7 @@ input {
 }
 
 input::placeholder {
-  color: #bbb8b2;
+  color: #555551;
 }
 
 button {
@@ -150,17 +177,18 @@ ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0;
 }
 
 li {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #e0ddd827;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #e0ddd818;
   cursor: pointer;
   transition: opacity 0.2s;
+  /* zone de tap confortable sur mobile */
+  min-height: 44px;
 }
 
 li:hover {
@@ -178,27 +206,38 @@ li:hover {
 .todo-text {
   flex: 1;
   font-family: 'DM Mono', monospace;
-  font-size: 0.85rem;
+  font-size: clamp(0.78rem, 3vw, 0.85rem);
   font-weight: 300;
   color: #e4e4e4;
   letter-spacing: 0.03em;
   transition: color 0.2s;
+  word-break: break-word;
 }
 
 .delete-btn {
   font-size: 0.6rem;
   letter-spacing: 0.1em;
-  color: #ccc9c2;
-  padding: 0;
+  color: #555551;
+  padding: 0.4rem;
   opacity: 0;
   transition:
     opacity 0.15s,
     color 0.15s;
+  /* toujours visible sur mobile (pas de hover) */
+  min-width: 44px;
+  text-align: right;
+}
+
+@media (hover: none) {
+  .delete-btn {
+    opacity: 1;
+  }
 }
 
 li:hover .delete-btn {
   opacity: 1;
 }
+
 .delete-btn:hover {
   color: #c0392b !important;
   opacity: 1 !important;
@@ -206,36 +245,10 @@ li:hover .delete-btn {
 
 .done_through .todo-text {
   text-decoration: line-through;
-  color: #bbb8b2;
+  color: #555551;
 }
 
 .done_through .todo-check {
   color: #ffffff;
-}
-
-.progress_container {
-  border: 2px solid red;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.progress_outside {
-  border: 1px solid #ccc9c2;
-  width: 100%;
-  height: 20px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: start;
-}
-
-.progress_inside {
-  border: 1px solid green;
-  width: 40%;
-  height: 20px;
-  border-radius: 10px;
-  background-color: green;
 }
 </style>

@@ -1,12 +1,11 @@
 <script setup>
-// defineProps({})
 const current = new Date()
-const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`
-
 const day = current.getDate()
 const month = current.getMonth() + 1
 const year = current.getFullYear()
-console.log(date)
+
+const dayNames = ['DIMANCHE', 'LUNDI', 'MARDI', 'MERCREDI', 'JEUDI', 'VENDREDI', 'SAMEDI']
+const dayName = dayNames[current.getDay()]
 </script>
 
 <template>
@@ -18,7 +17,7 @@ console.log(date)
         <p>{{ year }}</p>
       </div>
     </div>
-    <p class="day-name">MARDI</p>
+    <p class="day-name">{{ dayName }}</p>
   </header>
 </template>
 
@@ -31,9 +30,9 @@ header {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1.2rem;
-  border-bottom: 1px solid #e0ddd8;
+  border-bottom: 1px solid #e0ddd827;
   margin-bottom: 2rem;
-  width: 40vw;
+  width: 100%;
 }
 
 .number_date_container {
@@ -45,7 +44,7 @@ header {
 
 .date {
   font-family: 'DM Serif Display', serif;
-  font-size: 5rem;
+  font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 400;
   color: #dddddd;
   line-height: 1;
@@ -60,7 +59,7 @@ header {
 
 .text_date p {
   font-family: 'DM Mono', monospace;
-  font-size: 1.1rem;
+  font-size: clamp(0.75rem, 2.5vw, 1.1rem);
   font-weight: 300;
   letter-spacing: 0.12em;
   color: #c4c2c2;
@@ -70,7 +69,7 @@ header {
 
 .day-name {
   font-family: 'DM Mono', monospace;
-  font-size: 1.2rem;
+  font-size: clamp(0.65rem, 2.5vw, 1.2rem);
   font-weight: 300;
   letter-spacing: 0.2em;
   color: #c4c2c2;
